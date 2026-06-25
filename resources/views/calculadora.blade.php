@@ -30,6 +30,12 @@
                 <x-button variant="op" action="operation" value="÷">÷</x-button>
                 <x-button variant="op" action="operation" value="×">×</x-button>
 
+                <x-button variant="num" action="digit" value="1">1</x-button>
+                <x-button variant="num" action="digit" value="2">2</x-button>
+                <x-button variant="num" action="digit" value="3">3pode tirar a clase do models </x-button>
+                <x-button variant="op" action="operation" value="-">−</x-button>
+
+
                 <x-button variant="num" action="digit" value="7">7</x-button>
                 <x-button variant="num" action="digit" value="8">8</x-button>
                 <x-button variant="num" action="digit" value="9">9</x-button>

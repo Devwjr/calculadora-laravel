@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CalculadoraModel;
+use App\Services\CalculadoraService;
 use Illuminate\Http\Request;
 
 class CalculadoraController extends Controller
 {
     public function index()
     {
-        $calc = CalculadoraModel::fromSession();
+        $calc = CalculadoraService::fromSession();
         return view('calculadora', $calc->toArray());
     }
 
     public function calcular(Request $request)
     {
-        $calc = CalculadoraModel::fromSession();
+        $calc = CalculadoraService::fromSession();
 
         match ($request->input('action')) {
             'digit' => $calc->digito($request->input('value')),

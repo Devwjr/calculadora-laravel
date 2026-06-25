@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Services;
 
-class CalculadoraModel
+class CalculadoraService
 {
     public string $display = '0';
     public string $num1 = '';
