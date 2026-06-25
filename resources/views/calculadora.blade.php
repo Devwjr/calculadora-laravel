@@ -96,113 +96,46 @@
 </head>
 <body>
 
-    <div class="calc" id="app">
+    <div class="calc">
         <div class="brand">
             <strong>CALCULADORA</strong>
             <small></small>
         </div>
 
-        <div id="display">0</div>
+        <div id="display">{{ $display }}</div>
 
-        <div class="grid">
-            <button class="clear" onclick="limpar()">C</button>
-            <button class="back" onclick="backspace()">⌫</button>
-            <button class="op" onclick="operacao('÷')">÷</button>
-            <button class="op" onclick="operacao('×')">×</button>
+        <form method="POST" action="{{ route('calcular') }}">
+            @csrf
+            <input type="hidden" name="action" id="action" value="">
+            <input type="hidden" name="value" id="value" value="">
 
-            <button class="num" onclick="digito('7')">7</button>
-            <button class="num" onclick="digito('8')">8</button>
-            <button class="num" onclick="digito('9')">9</button>
-            <button class="op" onclick="operacao('-')">−</button>
+            <div class="grid">
+                <button type="submit" class="clear" onclick="setAction('clear')">C</button>
+                <button type="submit" class="back" onclick="setAction('backspace')">⌫</button>
+                <button type="submit" class="op" onclick="setAction('operation', '÷')">÷</button>
+                <button type="submit" class="op" onclick="setAction('operation', '×')">×</button>
 
-            <button class="num" onclick="digito('4')">4</button>
-            <button class="num" onclick="digito('5')">5</button>
-            <button class="num" onclick="digito('6')">6</button>
-            <button class="op" onclick="operacao('+')">+</button>
+                <button type="submit" class="num" onclick="setAction('digit', '7')">7</button>
+                <button type="submit" class="num" onclick="setAction('digit', '8')">8</button>
+                <button type="submit" class="num" onclick="setAction('digit', '9')">9</button>
+                <button type="submit" class="op" onclick="setAction('operation', '-')">−</button>
 
-            <button class="num span2" onclick="digito('0')">0</button>
-            <button class="num" onclick="digito('.')">,</button>
-            <button class="eq" onclick="calcular()">=</button>
-        </div>
+                <button type="submit" class="num" onclick="setAction('digit', '4')">4</button>
+                <button type="submit" class="num" onclick="setAction('digit', '5')">5</button>
+                <button type="submit" class="num" onclick="setAction('digit', '6')">6</button>
+                <button type="submit" class="op" onclick="setAction('operation', '+')">+</button>
+
+                <button type="submit" class="num span2" onclick="setAction('digit', '0')">0</button>
+                <button type="submit" class="num" onclick="setAction('digit', '.')">,</button>
+                <button type="submit" class="eq" onclick="setAction('calculate')">=</button>
+            </div>
+        </form>
     </div>
 
     <script>
-        let num1 = '', num2 = '', op = '', etapa = 'num1';
-        const display = document.getElementById('display');
-
-        function atualizarDisplay() {
-            if (etapa === 'num1') {
-                display.textContent = num1 || '0';
-            } else {
-                display.textContent = (num1 || '0') + ' ' + op + (num2 ? ' ' + num2 : '');
-            }
-        }
-
-        function digito(d) {
-            if (etapa === 'num1') {
-                if (d === '.') {
-                    if (!num1.includes('.')) num1 += '.';
-                } else {
-                    num1 = (num1 === '' || num1 === '0') ? d : num1 + d;
-                }
-            } else {
-                if (d === '.') {
-                    if (!num2.includes('.')) num2 += '.';
-                } else {
-                    num2 = (num2 === '' || num2 === '0') ? d : num2 + d;
-                }
-            }
-            atualizarDisplay();
-        }
-
-        function operacao(o) {
-            if (num1 === '') num1 = '0';
-            op = o;
-            etapa = 'num2';
-            atualizarDisplay();
-        }
-
-        function limpar() {
-            num1 = ''; num2 = ''; op = ''; etapa = 'num1';
-            atualizarDisplay();
-        }
-
-        function backspace() {
-            if (etapa === 'num1' && num1) {
-                num1 = num1.slice(0, -1);
-            } else if (etapa === 'num2' && num2) {
-                num2 = num2.slice(0, -1);
-            }
-            atualizarDisplay();
-        }
-
-        async function calcular() {
-            if (num1 === '' || op === '' || num2 === '') return;
-
-            const form = new FormData();
-            form.append('_token', '{{ csrf_token() }}');
-            form.append('num1', num1);
-            form.append('num2', num2);
-            form.append('operacao', op);
-
-            const res = await fetch('{{ route('calcular') }}', {
-                method: 'POST',
-                body: form
-            });
-
-            const data = await res.json();
-
-            if (data.erro) {
-                display.textContent = data.erro;
-                num1 = ''; num2 = ''; op = ''; etapa = 'num1';
-                return;
-            }
-
-            if (data.resultado != undefined) {
-                num1 = String(data.resultado);
-                num2 = ''; op = ''; etapa = 'num1';
-                display.textContent = num1;
-            }
+        function setAction(action, value) {
+            document.getElementById('action').value = action;
+            document.getElementById('value').value = value || '';
         }
     </script>
 
