@@ -25,24 +25,24 @@
             <input type="hidden" name="value" id="value" value="">
 
             <div class="grid grid-cols-4 gap-2">
-                <button type="submit" class="clear col-span-1 bg-black text-white py-3.5 rounded-lg text-lg font-semibold cursor-pointer shadow-[0_3px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] transition-all duration-75" onclick="setAction('clear')">C</button>
-                <button type="submit" class="back col-span-1 bg-neutral-700 text-white py-3.5 rounded-lg text-base font-semibold cursor-pointer shadow-[0_3px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] transition-all duration-75" onclick="setAction('backspace')">⌫</button>
-                <button type="submit" class="op col-span-1 bg-black text-white py-3.5 rounded-lg text-xl font-semibold cursor-pointer shadow-[0_3px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] transition-all duration-75" onclick="setAction('operation', '÷')">÷</button>
-                <button type="submit" class="op col-span-1 bg-black text-white py-3.5 rounded-lg text-xl font-semibold cursor-pointer shadow-[0_3px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] transition-all duration-75" onclick="setAction('operation', '×')">×</button>
+                <x-button variant="clear" action="clear">C</x-button>
+                <x-button variant="back" action="backspace">⌫</x-button>
+                <x-button variant="op" action="operation" value="÷">÷</x-button>
+                <x-button variant="op" action="operation" value="×">×</x-button>
 
-                <button type="submit" class="num col-span-1 bg-white text-black py-3.5 rounded-lg text-xl font-semibold cursor-pointer shadow-[0_3px_0_rgba(0,0,0,0.15)] border border-black/20 active:translate-y-[2px] active:shadow-[0_1px_0_rgba(0,0,0,0.15)] transition-all duration-75" onclick="setAction('digit', '7')">7</button>
-                <button type="submit" class="num col-span-1 bg-white text-black py-3.5 rounded-lg text-xl font-semibold cursor-pointer shadow-[0_3px_0_rgba(0,0,0,0.15)] border border-black/20 active:translate-y-[2px] active:shadow-[0_1px_0_rgba(0,0,0,0.15)] transition-all duration-75" onclick="setAction('digit', '8')">8</button>
-                <button type="submit" class="num col-span-1 bg-white text-black py-3.5 rounded-lg text-xl font-semibold cursor-pointer shadow-[0_3px_0_rgba(0,0,0,0.15)] border border-black/20 active:translate-y-[2px] active:shadow-[0_1px_0_rgba(0,0,0,0.15)] transition-all duration-75" onclick="setAction('digit', '9')">9</button>
-                <button type="submit" class="op col-span-1 bg-black text-white py-3.5 rounded-lg text-xl font-semibold cursor-pointer shadow-[0_3px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] transition-all duration-75" onclick="setAction('operation', '-')">−</button>
+                <x-button variant="num" action="digit" value="7">7</x-button>
+                <x-button variant="num" action="digit" value="8">8</x-button>
+                <x-button variant="num" action="digit" value="9">9</x-button>
+                <x-button variant="op" action="operation" value="-">−</x-button>
 
-                <button type="submit" class="num col-span-1 bg-white text-black py-3.5 rounded-lg text-xl font-semibold cursor-pointer shadow-[0_3px_0_rgba(0,0,0,0.15)] border border-black/20 active:translate-y-[2px] active:shadow-[0_1px_0_rgba(0,0,0,0.15)] transition-all duration-75" onclick="setAction('digit', '4')">4</button>
-                <button type="submit" class="num col-span-1 bg-white text-black py-3.5 rounded-lg text-xl font-semibold cursor-pointer shadow-[0_3px_0_rgba(0,0,0,0.15)] border border-black/20 active:translate-y-[2px] active:shadow-[0_1px_0_rgba(0,0,0,0.15)] transition-all duration-75" onclick="setAction('digit', '5')">5</button>
-                <button type="submit" class="num col-span-1 bg-white text-black py-3.5 rounded-lg text-xl font-semibold cursor-pointer shadow-[0_3px_0_rgba(0,0,0,0.15)] border border-black/20 active:translate-y-[2px] active:shadow-[0_1px_0_rgba(0,0,0,0.15)] transition-all duration-75" onclick="setAction('digit', '6')">6</button>
-                <button type="submit" class="op col-span-1 bg-black text-white py-3.5 rounded-lg text-xl font-semibold cursor-pointer shadow-[0_3px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] transition-all duration-75" onclick="setAction('operation', '+')">+</button>
+                <x-button variant="num" action="digit" value="4">4</x-button>
+                <x-button variant="num" action="digit" value="5">5</x-button>
+                <x-button variant="num" action="digit" value="6">6</x-button>
+                <x-button variant="op" action="operation" value="+">+</x-button>
 
-                <button type="submit" class="num col-span-2 bg-white text-black py-3.5 rounded-lg text-xl font-semibold cursor-pointer shadow-[0_3px_0_rgba(0,0,0,0.15)] border border-black/20 active:translate-y-[2px] active:shadow-[0_1px_0_rgba(0,0,0,0.15)] transition-all duration-75" onclick="setAction('digit', '0')">0</button>
-                <button type="submit" class="num col-span-1 bg-white text-black py-3.5 rounded-lg text-xl font-semibold cursor-pointer shadow-[0_3px_0_rgba(0,0,0,0.15)] border border-black/20 active:translate-y-[2px] active:shadow-[0_1px_0_rgba(0,0,0,0.15)] transition-all duration-75" onclick="setAction('digit', '.')">,</button>
-                <button type="submit" class="eq col-span-1 bg-black text-white py-3.5 rounded-lg text-2xl font-bold cursor-pointer shadow-[0_3px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] transition-all duration-75" onclick="setAction('calculate')">=</button>
+                <x-button variant="num" action="digit" value="0" wide>0</x-button>
+                <x-button variant="num" action="digit" value=".">,</x-button>
+                <x-button variant="eq" action="calculate">=</x-button>
             </div>
         </form>
     </div>
